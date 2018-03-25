@@ -1,5 +1,5 @@
 <?php
-   include('config.php');
+   include('dbConfig.php');
    session_start();
    //edit this to work with our db
    $user_check = $_SESSION['login_user'];
