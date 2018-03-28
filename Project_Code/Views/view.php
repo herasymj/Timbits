@@ -1,3 +1,10 @@
+<?php
+include('../Models/session.php');
+if(!isset($request)) {
+    header("Location: home.php");
+}
+?>
+
 <!doctype html>
 <html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
@@ -141,7 +148,7 @@
 
 
 <header class="container-header">
-    <h1>REQUEST #:</h1>
+    <h1>REQUEST #:<?php echo $request->requestID ?></h1>
 </header>
 
 <div class="container-content">
