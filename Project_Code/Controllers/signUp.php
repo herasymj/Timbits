@@ -31,5 +31,5 @@ $_SESSION['user'] = $email;
  mysqli_close($db);
 
 //Go to home page if successful
-header("home.php");
+header("Location:../Views/home.php");
  ?>

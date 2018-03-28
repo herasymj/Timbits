@@ -39,4 +39,4 @@ $insert->close();
 mysqli_close($db);
 
 //Go to home page if successful -- put in java script?
-header("home.php");
+header("Location: ../Views/home.php");
