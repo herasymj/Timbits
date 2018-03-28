@@ -8,7 +8,7 @@ require '../Models/dbConfig.php';
 session_start();
 
 //Prepared Statement
-$insert = $db->prepare("SELECT 'EMAIL' FROM `Users` WHERE 'EMAIL' = ? AND 'PASSWORD' = ?");
+$insert = $db->prepare("SELECT 'EMAIL' FROM `Users` WHERE 'EMAIL' = ? AND 'PASSWORD' = ? limit 1");
 echo "2";
 
 $insert->bind_Param('ss', $email, $password);
@@ -25,13 +25,14 @@ $insert->execute();
 //$result = $insert->get_result();
 $insert->bind_result($result);
 $insert->fetch();
+$email = $result->EMAIL;
 
 //Set session variable
-if(mysqli_num_rows($result) == 1) {
+if($email != ""  ||  isset($email)) {
     $_SESSION['user'] = $email;
 }
 else{
-    header("Location: ..index.php");
+    header("Location: ../index.php");
 }
 
 $insert->close();
