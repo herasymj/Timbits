@@ -22,7 +22,9 @@ echo $email;
 
 //Run Query
 $insert->execute();
-$result = $insert->get_result();
+//$result = $insert->get_result();
+$insert->bind_result($result);
+$insert->fetch();
 
 //Set session variable
 if(mysqli_num_rows($result) == 1) {
