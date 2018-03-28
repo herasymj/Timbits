@@ -1,11 +1,10 @@
 
 <?php
-include("dbConfig.php");
-session_start();
-
- error_reporting(E_ALL);
+error_reporting(E_ALL);
 ini_set('display_errors', '1');
 
+require('../Models/dbConfig.php');
+session_start();
 
  //Prepared Statement
  $insert = $db->prepare("INSERT INTO `Users`(`FIRST_NAME`, `LAST_NAME`, `EMAIL`, `IS_APPROVER`, `IS_ANALYST`, `PASSWORD`) 

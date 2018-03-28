@@ -216,11 +216,11 @@
                             </div>
                             <div class="input-group lg">
                                 <span class="input-group-addon"><i class="fa fa-snapchat-ghost" aria-hidden="true"></i></span>
-                                <input type="text" class="form-control" placeholder="Enter email">
+                                <input type="text" class="form-control" name="email1" placeholder="Enter email">
                             </div>
                             <div class="input-group lg">
                                 <span class="input-group-addon"><i class="fa fa-lock" aria-hidden="true"></i></span>
-                                <input type="password" class="form-control" placeholder="Enter password">
+                                <input type="password" class="form-control" name="password1" placeholder="Enter password">
                             </div>
                             <div class="form-group in">
                                 <input type="submit" class="btn btn-dark btn-block" value = "Login">

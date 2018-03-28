@@ -100,41 +100,41 @@ function checkApp($appName){
     <form class="form-horizontal col-lg-6 centered-box" role="form" method="POST" action="../Controllers/submitRequest.php" onsubmit="checkAppName()">
         <div class="input-group">
             <label class="request-label col-lg-3" for="firstName">First Name: </label>
-            <input type="text" class="form-control col-lg-9" id="firstName" placeholder="Enter first name">
+            <input type="text" class="form-control col-lg-9" id="firstName" name="firstName" placeholder="Enter first name">
         </div>
         <div class="input-group">
             <label class="request-label col-lg-3" for="lastName">Last Name: </label>
-            <input type="text" class="form-control col-lg-9" id="lastName" placeholder="Enter last name">
+            <input type="text" class="form-control col-lg-9" id="lastName" name="lastName" placeholder="Enter last name">
         </div>
         <div class="input-group">
             <label class="request-label col-lg-3" for="email">E-mail: </label>
-            <input type="text" class="form-control col-lg-9" id="email" placeholder="E-mail address">
+            <input type="text" class="form-control col-lg-9" id="email" name="email" placeholder="E-mail address">
         </div>
         <div class="input-group">
             <label class="request-label col-lg-3" for="phoneNumber">Phone Number: </label>
-            <input type="text" class="form-control col-lg-9" id="phoneNumber" placeholder="(###)-###-####">
+            <input type="text" class="form-control col-lg-9" id="phoneNumber" name="phoneNumber" placeholder="(###)-###-####">
         </div>
         <div class="input-group">
             <label class="request-label col-lg-3" for="department">Department: </label>
-            <input type="text" class="form-control col-lg-9" id="department" placeholder="Enter department">
+            <input type="text" class="form-control col-lg-9" id="department"  name="department" placeholder="Enter department">
         </div>
         </br>
         <br>
         <div class="input-group">
             <label class="request-label col-lg-4" for="appName">Application Name: </label>
-            <input type="text" class="form-control col-lg-8" id="appName" placeholder="Search...">
+            <input type="text" class="form-control col-lg-8" id="appName" name="appName" placeholder="Search...">
         </div>
         <div class="input-group">
             <label class="request-label col-lg-4" for="permType">Permission Type: </label>
-            <input type="text" class="form-control col-lg-8" id="permType" placeholder="Search...">
+            <input type="text" class="form-control col-lg-8" id="permType" name="permType" placeholder="Search...">
         </div>
         <div class="input-group">
             <label class="request-label col-lg-4" for="approver">Approver Name: </label>
-            <input type="text" class="form-control col-lg-8" id="approver" placeholder="Search...">
+            <input type="text" class="form-control col-lg-8" id="approver" name="approver" placeholder="Search...">
         </div>
         <div class="input-group">
             <label class="request-label col-lg-4" for="reason">Reason: </label>
-            <textarea id="reason" type="text" class="form-control col-lg-8" placeholder="Write something.." style="height:100px"></textarea>
+            <textarea id="reason" name="reason" type="text" class="form-control col-lg-8" placeholder="Write something.." style="height:100px"></textarea>
         </div>
 
 

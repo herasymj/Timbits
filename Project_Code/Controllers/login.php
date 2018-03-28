@@ -1,22 +1,24 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: jenni
- * Date: 2018-03-25
- * Time: 8:50 PM
- */
+error_reporting(E_ALL);
+ini_set('display_errors', '1');
 //put in index page
-include("../Models/dbConfig.php");
+
+require '../Models/dbConfig.php';
+
 session_start();
 
 //Prepared Statement
-$insert = $db->prepare("SELECT 'EMAIL' FROM `Users` WHERE 'EMAIL' = $email AND 'PASSWORD' = $password");
+$insert = $db->prepare("SELECT 'EMAIL' FROM `Users` WHERE 'EMAIL' = ? AND 'PASSWORD' = ?");
+echo "2";
 
 $insert->bind_Param('ss', $email, $password);
+echo "3";
 
 //Set Values
-$email = mysqli_real_escape_string($db, $_POST['email']);
-$password = mysqli_real_escape_string($db, $_POST['password']);
+$email = mysqli_real_escape_string($db, $_POST['email1']);
+$password = mysqli_real_escape_string($db, $_POST['password1']);
+
+echo $email;
 
 //Run Query
 $insert->execute();
@@ -27,7 +29,7 @@ if(mysqli_num_rows($result) == 1) {
     $_SESSION['user'] = $email;
 }
 else{
-    header("Location: ../Views/index.php");
+    header("Location: ..index.php");
 }
 
 $insert->close();
