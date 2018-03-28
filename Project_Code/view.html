@@ -33,7 +33,7 @@
 
     }
     .container-header{
-        background-color: green;
+        background-color: darkslategray;
         padding: 1% 1% 1% 1%;
         margin-top: 10px;
         margin-bottom: 10px ;
@@ -43,17 +43,16 @@
     }
 
     .container-footer{
-        background-color: blue;
-        padding: 1% 1% 1% 1%;
-        margin-top: 10px;
-        margin-bottom: 10px;
-        margin-left: auto;
-        margin-right: auto;
-        width: 80%;
+        background-color: darkslategray;
+        /*width: 80%;*/
+        /*padding: 1% 1% 1% 1%;*/
+        /*margin-left: auto;*/
+        /*margin-right: auto;*/
+        /*display: flex;*/
     }
 
     .container-content{
-        background-color: lightblue;
+        background-color: white;
         padding: 1% 1% 1% 1%;
         margin-bottom: 10px ;
         margin-left: auto;
@@ -62,6 +61,14 @@
     }
 
     .request-label{
+        color: black;
+        padding: 10px 0 5px 5px;
+        align-items: normal;
+        font-size: 20px;
+
+        /*change color*/
+    }
+    .output-label{
         color: black;
         padding: 10px 0 5px 5px;
         align-items: normal;
@@ -138,16 +145,57 @@
 </header>
 
 <div class="container-content">
+    <div class="input-group">
+        <label class="request-label col-lg-3" for="firstName">First Name: </label>
+        <output class="output-label" type="text" class="form-control col-lg-9" id="firstName">Maksym Zabutnyy</output>
+    </div>
+    <div class="input-group">
+        <label class="request-label col-lg-3" for="lastName">Last Name: </label>
+        <output class="output-label" type="text" class="form-control col-lg-9" id="lastName">Maksym Zabutnyy</output>
+    </div>
+    <div class="input-group">
+        <label class="request-label col-lg-3" for="email">E-mail: </label>
+        <output class="output-label" type="text" class="form-control col-lg-9" id="email">Maksym Zabutnyy</output>
+    </div>
+    <div class="input-group">
+        <label class="request-label col-lg-3" for="phoneNumber">Phone Number: </label>
+        <output class="output-label" type="text" class="form-control col-lg-9" id="phoneNumber">Maksym Zabutnyy</output>
+    </div>
+    <div class="input-group">
+        <label class="request-label col-lg-3" for="department">Department: </label>
+        <output class="output-label" type="text" class="form-control col-lg-9" id="department">Maksym Zabutnyy</output>
+    </div>
+    </br>
+    <br>
+    <div class="input-group">
+        <label class="request-label col-lg-4" for="appName">Application Name: </label>
+        <output class="output-label" type="text" class="form-control col-lg-8" id="appName">Maksym Zabutnyy</output>
+    </div>
+    <div class="input-group">
+        <label class="request-label col-lg-4" for="permType">Permission Type: </label>
+        <output class="output-label" type="text" class="form-control col-lg-8" id="permType">Maksym Zabutnyy</output>
+    </div>
+    <div class="input-group">
+        <label class="request-label col-lg-4" for="approver">Approver Name: </label>
+        <output class="output-label" type="text" class="form-control col-lg-8" id="approver">Maksym Zabutnyy</output>
+    </div>
+    <div class="input-group">
+        <label class="request-label col-lg-4" for="reason">Reason: </label>
+        <textarea-output id="reason" type="text" class="form-control col-lg-8" style="height:100px">My reason is...</textarea-output>
+    </div>
+
+    <div class="container-footer">
+        <button class="btn btn-dark float-left" type="submit" value="request-back"><a href="#"><h3>Back</h3></a></button>
+
+        <button class="btn btn-dark float-right" type="submit" value="request-approve"><a href="#"><h3>Approve</h3></a></button>
+
+    </div>
 
 </div>
 
-<footer class="container-footer">
-    <div class="container">
-        <button class="btn btn-dark float-left" type="submit" value="request-back"><a href="#"><h3>Back</h3></a></button>
-        <button class="btn btn-dark float-right" type="submit" value="request-approve"><a href="#"><h3>Approve</h3></a></button>
-    </div>
 
-</footer>
+
+
 
 
 
