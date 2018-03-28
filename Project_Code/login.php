@@ -9,10 +9,6 @@
 include("dbConfig.php");
 session_start();
 
-error_reporting(E_ALL);
-ini_set('display_errors', '1');
-
-
 //Prepared Statement
 $insert = $db->prepare("SELECT 'EMAIL' FROM `Users` WHERE 'EMAIL' = $email AND 'PASSWORD' = $password");
 
@@ -37,5 +33,5 @@ else{
 $insert->close();
 mysqli_close($db);
 
-//Go to home page if successful
+//Go to home page if successful -- put in java script?
 header("home.php");
