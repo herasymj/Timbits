@@ -7,6 +7,7 @@
  */
 
 include('../Models/session.php');
+include_once('navbar.php');
 function checkApp($appName){
 
 }
