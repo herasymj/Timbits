@@ -10,8 +10,13 @@
    $row = mysqli_fetch_array($get_user,MYSQLI_ASSOC);
    
    $user = new user($row['USER_ID'], $row['FIRST_NAME'], $row['LAST_NAME'], $row['EMAIL'], $row['IS_APPROVER'], $row['IS_ANALYST']);
+   $request = new Request();
    
    if(!isset($_SESSION['user'])){
-      header("location:index.php");
+      header("location:../index.php");
+   }
+
+   if(isset($_SESSION['request'])){
+       $request = $_SESSION['request'];
    }
 ?>

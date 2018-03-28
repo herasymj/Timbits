@@ -6,7 +6,7 @@
  * Time: 8:50 PM
  */
 //put in index page
-include("dbConfig.php");
+include("../Models/dbConfig.php");
 session_start();
 
 //Prepared Statement
@@ -23,11 +23,11 @@ $insert->execute();
 $result = $insert->get_result();
 
 //Set session variable
-if(mysqli_num_rows($result) ==1) {
+if(mysqli_num_rows($result) == 1) {
     $_SESSION['user'] = $email;
 }
 else{
-    $error = "Incorrect login credentials.";
+    header("Location: ../Views/index.php");
 }
 
 $insert->close();
