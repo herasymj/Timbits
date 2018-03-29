@@ -41,6 +41,6 @@ function ValidateLogin() {
 }
 
 
-document.getElementById('signupDiv').onsubmit = ValidateSignUp;
-
-document.getElementById('loginDiv').onsubmit = ValidateLogin;
+// document.getElementById('signupDiv').onsubmit = ValidateSignUp;
+//
+// document.getElementById('loginDiv').onsubmit = ValidateLogin;
