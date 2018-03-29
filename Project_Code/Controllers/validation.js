@@ -29,10 +29,10 @@ function ValidateLogin() {
 
     var error = false;
 
-    if (document.getElementById('email').value.search(/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/) == -1) {
+    if (document.getElementById('email1').value.search(/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/) == -1) {
         error = true;
     }
-    if (document.getElementById('password').value == "") {
+    if (document.getElementById('password1').value == "") {
         error = true;
     }
 
@@ -41,6 +41,6 @@ function ValidateLogin() {
 }
 
 
-document.getElementById('*******Signupidname******').onsubmit = ValidateSignUp;
+document.getElementById('signupDiv').onsubmit = ValidateSignUp;
 
-document.getElementById('****loginid****').onsubmit = ValidateLogin;
+document.getElementById('loginDiv').onsubmit = ValidateLogin;
