@@ -5,7 +5,6 @@ if(!isset($_SESSION['user'])){
 }
 include('../Models/user.php');
 $user = unserialize($_SESSION['user']);
-
 ?>
 <!doctype html>
 <html lang="en" xmlns="http://www.w3.org/1999/html">
@@ -20,95 +19,20 @@ $user = unserialize($_SESSION['user']);
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCk"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="style.css" type="text/css" />
     <title>Home</title>
 </head>
 <body>
 <style>
-    html{
-        width: 100%;
-        height: 100%;
-        background-color: #222;
-        border-color: #080808;
-    }
-
-    input[type=text],
-    input[type=password]{
-        background: 0 0;
-        border: 0;
-        box-shadow: none;
-        border-bottom: 1px solid #afb5c1;
-        border-radius: 0;
-
+    th{
+      color:white
 
     }
-    .container-header{
-        background-color: darkslategray;
-        padding: 1% 1% 1% 1%;
-        margin-top: 10px;
-        margin-bottom: 10px ;
-        margin-left: auto;
-        margin-right: auto;
-        width: 100%;
+    td{
+      color:white
+
     }
 
-    .container-footer{
-        background-color: darkslategray;
-        /*width: 80%;*/
-        /*padding: 1% 1% 1% 1%;*/
-        /*margin-left: auto;*/
-        /*margin-right: auto;*/
-        /*display: flex;*/
-    }
-
-    /*.container-content{*/
-    /*background-color: white;*/
-    /*padding: 1% 1% 1% 1%;*/
-    /*margin-bottom: 10px ;*/
-    /*margin-left: auto;*/
-    /*margin-right: auto;*/
-    /*width: 80%;*/
-    /*}*/
-
-    .request-label{
-        color: black;
-        padding: 10px 0 5px 5px;
-        align-items: normal;
-        font-size: 20px;
-
-        /*change color*/
-    }
-    .output-label{
-        color: black;
-        padding: 10px 0 5px 5px;
-        align-items: normal;
-        font-size: 20px;
-
-        /*change color*/
-    }
-    .input-group{
-        background: 0 0;
-        border: 0;
-        color: #afb5c1;
-        padding: 0 0 5px 0;
-    }
-    .centered-box{
-        margin-left:auto;
-        margin-right:auto;
-    }
-    .label-group{
-        background: 0 0;
-        border: 0;
-        color: #afb5c1;
-        padding: 0 0 5px 0;
-    }
-    .btn-dark{
-        border: 0;
-        border-radius: 30px;
-    }
-    input[type=text],
-    input[type=password]:focus{
-        box-shadow:none;
-    }
 </style>
 
 <?php include_once('navbar.php'); ?>
@@ -184,4 +108,3 @@ $user = unserialize($_SESSION['user']);
 
 </body>
 </html>
-
