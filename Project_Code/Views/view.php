@@ -5,6 +5,14 @@ if(!isset($_SESSION['user'])){
 }
 include('../Models/user.php');
 $user = unserialize($_SESSION['user']);
+$request = unserialize($_SESSION['request']);
+
+//check if users have access to this request
+if($request->uID != $user->id || $request->approverID != $user->id || $request->analystID != $user->id){
+    header("location: home.php");
+}
+
+//status: analyst, approver, permission, closed
 
 ?>
 

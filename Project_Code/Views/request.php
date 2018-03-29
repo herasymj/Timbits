@@ -51,16 +51,16 @@ $user = unserialize($_SESSION['user']);
 <div class="container col-lg-12">
     <form class="form-horizontal col-lg-6 centered-box" role="form" method="POST" action="../Controllers/submitRequest.php" onsubmit="checkAppName()">
         <div class="input-group">
-            <label class="request-label col-lg-3" for="firstName">First Name: </label>
-            <input type="text" class="form-control col-lg-9" id="firstName" name="firstName" placeholder="Enter first name">
+            <label class="request-label col-lg-3">First Name: </label>
+            <label class="request-label col-lg-3" ><?php echo $user->firstName; ?> </label>
         </div>
         <div class="input-group">
-            <label class="request-label col-lg-3" for="lastName">Last Name: </label>
-            <input type="text" class="form-control col-lg-9" id="lastName" name="lastName" placeholder="Enter last name">
+            <label class="request-label col-lg-3">Last Name: </label>
+            <label class="request-label col-lg-3"><?php echo $user->lastName; ?> </label>
         </div>
         <div class="input-group">
-            <label class="request-label col-lg-3" for="email">E-mail: </label>
-            <input type="text" class="form-control col-lg-9" id="email" name="email" placeholder="E-mail address">
+            <label class="request-label col-lg-3">E-mail: </label>
+            <label class="request-label col-lg-3"><?php echo $user->email; ?> </label>
         </div>
         <div class="input-group">
             <label class="request-label col-lg-3" for="phoneNumber">Phone Number: </label>
@@ -74,15 +74,15 @@ $user = unserialize($_SESSION['user']);
         <br>
         <div class="input-group">
             <label class="request-label col-lg-4" for="appName">Application Name: </label>
-            <input type="text" class="form-control col-lg-8" id="appName" name="appName" placeholder="Search...">
+            <input type="text" class="form-control col-lg-8" id="appName" name="appName" placeholder="Full App Name">
         </div>
         <div class="input-group">
             <label class="request-label col-lg-4" for="permType">Permission Type: </label>
             <input type="text" class="form-control col-lg-8" id="permType" name="permType" placeholder="Search...">
         </div>
         <div class="input-group">
-            <label class="request-label col-lg-4" for="approver">Approver Name: </label>
-            <input type="text" class="form-control col-lg-8" id="approver" name="approver" placeholder="Search...">
+            <label class="request-label col-lg-4">Approver Name: </label>
+            <label class="request-label col-lg-4">Randomly Selected </label>
         </div>
         <div class="input-group">
             <label class="request-label col-lg-4" for="reason">Reason: </label>
@@ -92,11 +92,18 @@ $user = unserialize($_SESSION['user']);
 
         <div class="input-group">
             <div class="container">
-                <a class="" href="#"><button class="btn btn-dark float-left" type="submit" value="request-back"><i class="fa fa-hand-o-left" aria-hidden="true"></i> Back</button></a>
+                <a class="" href="home.php"><button class="btn btn-dark float-left" type="submit" value="request-back"><i class="fa fa-hand-o-left" aria-hidden="true"></i> Back</button></a>
                 <button class="btn btn-dark  float-right" type="submit" value="request-submit"><i class="fa fa-paper-plane" aria-hidden="true"></i>  Submit</button>
 
             </div>
         </div>
+        <span class="text-danger align-middle">
+            <?php
+                if(isset($_SESSION['error'])){
+                    echo $_SESSION['error'];
+                }
+            ?>
+        </span>
     </form>
 
 </div>

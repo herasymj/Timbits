@@ -6,7 +6,7 @@
    //define('DB_DATABASE', 'HELLs App Permissions');
 $server = 'ec2-18-220-100-235.us-east-2.compute.amazonaws.com';
 $username = 'root';
-$pass = 'ense470T1mbits';
+$pass = 'yolo';
 $database = 'HELLs App Permissions';
    $db = mysqli_connect($server,$username,$pass,$database);
 mysqli_ping($db);

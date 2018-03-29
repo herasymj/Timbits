@@ -21,10 +21,12 @@ class Request {
 	var $approverApproved;
 	var $permissionGranted;
 	var $isOpen;
-	
+	var $dateSubmitted;
   
 	//functions
-	function __construct ($req_id, $uID, $approverID, $analystID, $appID, $userName, $email, $num, $department, $app, $permission, $reason, $approverName, $analystApproved, $approverApproved, $permissionGranted, $isOpen) {
+	function __construct ($req_id, $uID, $approverID, $analystID, $appID, $userName, $email, $num, $department,
+                          $app, $permission, $reason, $approverName, $analystApproved, $approverApproved, $permissionGranted,
+                          $isOpen, $dateSubmitted) {
         $this->requestID = $req_id;
         $this->userID = $uID;
         $this->approverID = $approverID;
@@ -42,6 +44,7 @@ class Request {
         $this->approverApproved = $approverApproved;
         $this->permissionGranted = $permissionGranted;
         $this->isOpen = $isOpen;
+        $this->dateSubmitted = $dateSubmitted;
 	}
 }
 
