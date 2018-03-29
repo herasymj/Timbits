@@ -14,6 +14,13 @@ function ValidateSignUp() {
     if (document.getElementById('password').value == "") {
         error = true;
     }
+    if (document.getElementById('password-confirmation').value == "") {
+        error = true;
+    }
+    if (document.getElementById('password').value != document.getElementById('password-confirmation').value) {
+        error = true;
+    }
+
 
     return !error;
 }
