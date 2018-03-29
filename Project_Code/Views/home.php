@@ -1,9 +1,10 @@
 <?php
 session_start();
+include('../Models/user.php');
+require '../Models/dbConfig.php';
 if(!isset($_SESSION['user'])){
     header("location: ../index.php");
 }
-include('../Models/user.php');
 $user = unserialize($_SESSION['user']);
 ?>
 <!doctype html>
@@ -57,23 +58,87 @@ $user = unserialize($_SESSION['user']);
                     <th>ID</th>
                     <th>Application Name</th>
                     <th>Request By</th>
-                    <th>Approver</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td data-title="ID"><a href="#" target="_blank">123</a></td>
-                    <td data-title="Application Name">Hell</td>
-                    <td data-title="Request By">Brad Pitt</td>
-                    <td data-title="Approver">John Wick</td>
-                </tr>
-
+                <?php
+                    $closedQuery = "SELECT * FROM `Permission Requests` WHERE USER_ID = '$user->id' AND IS_OPEN = '0'";
+                    $closedResult = mysqli_query($db, $closedQuery);
+                    $i = 5;
+                    while($row = mysqli_fetch_array($closedResult)){
+                        $i-=1;
+                        //Get App name
+                        $appid = $row['APPLICATION_ID'];
+                        $app1Query = "SELECT * from Applications WHERE APP_ID = '$appid'";
+                        $app1Result = mysqli_query($db, $app1Query);
+                        $appRow1 = mysqli_fetch_array($app1Result,MYSQLI_ASSOC);
+                        echo "<tr>";
+                            echo "<td data-title=\"ID\"><a href=\"../Controllers/openRequest.php?id=". $row['REQUEST_ID'] . "\" target=\"_blank\">" . $row['REQUEST_ID'] . "</a></td>";
+                            echo "<td data-title=\"Application Name\">" . $appRow1['APP_NAME'] . "</td>";
+                            echo "<td data-title=\"Request By\">" . $user->firstName . " " . $user->lastName . "</td>";
+                         echo "</tr>";
+                         if($i == 0){
+                             break;
+                         }
+                    }
+                ?>
                 </tbody>
             </table>
         </div>
 
 
     </div>
+
+    <?php
+        if($user->isAnalyst == 1 || $user->isApprover == 1){
+            echo "<br>";
+
+            echo "<header class=\"container-header\">";
+                echo "<h3>Need Approval</h3>";
+            echo "</header>";
+           echo " <div id=\"open-table\">";
+               echo " <div class=\"table-responsive-vertical shadow-z-1\">";
+            echo "<table id=\"opentable\" class=\"table table-hover table-mc-light-blue\">";
+            echo "<thead>";
+            echo "<tr>";
+            echo "<th>ID</th>";
+            echo "<th>Application Name</th>";
+            echo "<th>Request By</th>";
+            echo "</tr>";
+            echo "</thead>";
+            echo " <tbody>";
+            $approveQuery = "SELECT * FROM `Permission Requests` WHERE (APPROVER_ID = '$user->id' AND APPROVER_APPROVED = '0' AND ANALYST_APPROVED = '1') OR (ANALYST_ID = '$user->id' AND (ANALYST_APPROVED = '0' OR (APPROVER_APPROVED = '1' AND IS_OPEN = '1')))";
+            $approvedResult = mysqli_query($db, $approveQuery);
+            $i = 5;
+            while($row = mysqli_fetch_array($approvedResult)){
+                $i-=1;
+                //Get App name
+                $appid = $row['APPLICATION_ID'];
+                $app1Query = "SELECT * from Applications WHERE APP_ID = '$appid'";
+                $app1Result = mysqli_query($db, $app1Query);
+                $appRow1 = mysqli_fetch_array($app1Result,MYSQLI_ASSOC);
+                //Get user's name
+                $uID = $row['USER_ID'];
+                $uQuery = "SELECT * from Users WHERE USER_ID = '$uID'";
+                $uResult = mysqli_query($db, $uQuery);
+                $uRow = mysqli_fetch_array($uResult,MYSQLI_ASSOC);
+                echo "<tr>";
+                echo "<td data-title=\"ID\"><a href=\"../Controllers/openRequest.php?id=". $row['REQUEST_ID'] . "\" target=\"_blank\">" . $row['REQUEST_ID'] . "</a></td>";
+                echo "<td data-title=\"Application Name\">" . $appRow1['APP_NAME'] . "</td>";
+                echo "<td data-title=\"Request By\">" . $uRow['FIRST_NAME'] . " " . $uRow['LAST_NAME'] . "</td>";
+                echo "</tr>";
+                if($i == 0){
+                    break;
+                }
+            }
+
+                     echo "</tbody>";
+                    echo "</table>";
+                echo "</div>";
+            echo "</div>";
+        }
+
+    ?>
 
     <br>
 
@@ -88,16 +153,30 @@ $user = unserialize($_SESSION['user']);
                     <th>ID</th>
                     <th>Application Name</th>
                     <th>Request By</th>
-                    <th>Approver</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td data-title="ID"><a href="#" target="_blank">123</a></td>
-                    <td data-title="Application Name">Hell</td>
-                    <td data-title="Request By">Brad Pitt</td>
-                    <td data-title="Approver">John Wick</td>
-                </tr>
+                <?php
+                $openQuery = "SELECT * FROM `Permission Requests` WHERE USER_ID = '$user->id' AND IS_OPEN = '1'";
+                $openResult = mysqli_query($db, $openQuery);
+                $i = 5;
+                while($row = mysqli_fetch_array($openResult)){
+                    $i-=1;
+                    //Get App name
+                    $appid = $row['APPLICATION_ID'];
+                    $app1Query = "SELECT * from Applications WHERE APP_ID = '$appid'";
+                    $app1Result = mysqli_query($db, $app1Query);
+                    $appRow1 = mysqli_fetch_array($app1Result,MYSQLI_ASSOC);
+                    echo "<tr>";
+                    echo "<td data-title=\"ID\"><a href=\"../Controllers/openRequest.php?id=". $row['REQUEST_ID'] . "\" target=\"_blank\">" . $row['REQUEST_ID'] . "</a></td>";
+                    echo "<td data-title=\"Application Name\">" . $appRow1['APP_NAME'] . "</td>";
+                    echo "<td data-title=\"Request By\">" . $user->firstName . " " . $user->lastName . "</td>";
+                    echo "</tr>";
+                    if($i == 0){
+                        break;
+                    }
+                }
+                ?>
 
                 </tbody>
             </table>

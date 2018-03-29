@@ -1,18 +1,53 @@
 <?php
 session_start();
+include('../Models/user.php');
+include('../Models/request.php');
 if(!isset($_SESSION['user'])){
     header("location: ../index.php");
 }
-include('../Models/user.php');
+if(!isset($_SESSION['request'])){
+    header("location: ../home.php");
+}
+
 $user = unserialize($_SESSION['user']);
 $request = unserialize($_SESSION['request']);
 
-//check if users have access to this request
-if($request->uID != $user->id || $request->approverID != $user->id || $request->analystID != $user->id){
-    header("location: home.php");
+//status: analyst, approver, permission, closed
+$status = "";
+//whether to display buttons or not depending on user looking at this request
+$buttons = "";
+//determine where we're at here
+if($request->isOpen == 0){
+    $status = "Request closed.";
+}
+else if($request->permissionGranted == 1){
+    $status = "Waiting on request to be closed.";
+    if($user->id == $request->analystID){
+        $buttons = "<button class=\"btn btn-dark pull-right \" type=\"submit\" value=\"request-approve\"><a href=\"../Controllers/approve.php\"><i class=\"fa fa-smile-o\" aria-hidden=\"true\"></i> Close Request</a></button>";
+    }
+}
+else if($request->approverApproved == 1){
+    $status = "Waiting on permissions to be given.";
+    if($user->id == $request->analystID){
+        $buttons = "<button class=\"btn btn-dark pull-right \" type=\"submit\" value=\"request-approve\"><a href=\"../Controllers/approve.php\"><i class=\"fa fa-smile-o\" aria-hidden=\"true\"></i> Permissions Set</a></button>";
+    }
+}
+else if($request->analystApproved == 1){
+    $status = "Waiting on approver approval.";
+    if($user->id == $request->approverID){
+        $buttons = "
+        <button class=\"btn btn-dark float-left\" type=\"submit\" value=\"request-back\"><a href=\"../Controllers/deny.php\"><i class=\"fa fa-frown-o\" aria-hidden=\"true\"></i> Deny</a></button>
+        <button class=\"btn btn-dark pull-right \" type=\"submit\" value=\"request-approve\"><a href=\"../Controllers/approve.php\"><i class=\"fa fa-smile-o\" aria-hidden=\"true\"></i> Approve</a></button>";
+    }
+}
+else{
+    $status = "Waiting on analyst approval.";
+    if($user->id == $request->analystID){
+        $buttons = "<button class=\"btn btn-dark float-left\" type=\"submit\" value=\"request-back\"><a href=\"../Controllers/deny.php\"><i class=\"fa fa-frown-o\" aria-hidden=\"true\"></i> Deny</a></button>
+        <button class=\"btn btn-dark pull-right \" type=\"submit\" value=\"request-approve\"><a href=\"../Controllers/approve.php\"><i class=\"fa fa-smile-o\" aria-hidden=\"true\"></i> Approve</a></button>";
+    }
 }
 
-//status: analyst, approver, permission, closed
 
 ?>
 
@@ -44,7 +79,7 @@ if($request->uID != $user->id || $request->approverID != $user->id || $request->
       margin-top: 30px;
       border: 0;
       border-radius: 30px;
-      padding: 0 10 0 10;
+      //padding: 0 10 0 10;
       width: 100px;
 
     }
@@ -53,52 +88,51 @@ if($request->uID != $user->id || $request->approverID != $user->id || $request->
 <?php include_once('navbar.php'); ?>
 
 <header class="container-header">
-    <h1>REQUEST #:</h1>
+    <h1>REQUEST #<?php echo $request->requestID; ?></h1>
 </header>
 <div class="container-content">
     <div class="input-group">
-        <label class="request-label col-sm-6" for="firstName">First Name: </label>
+        <label class="request-label col-sm-6" for="firstName">Name: </label>
 
-        <output class="output-label  " type="text" class="form-control col-lg-9" id="firstName">Maksym Zabutnyy</output>
-    </div>
-    <div class="input-group">
-        <label class="request-label col-sm-6" for="lastName">Last Name: </label>
-        <output class="output-label" type="text" class="form-control col-lg-9" id="lastName">Maksym Zabutnyy</output>
+        <output class="output-label  " type="text" class="form-control col-lg-9" id="name"><?php echo $request->name; ?></output>
     </div>
     <div class="input-group">
         <label class="request-label col-sm-6" for="email">E-mail: </label>
-        <output class="output-label" type="text" class="form-control col-lg-9" id="email">Maksym Zabutnyy</output>
+        <output class="output-label" type="text" class="form-control col-lg-9" id="email"><?php echo $request->email; ?></output>
     </div>
     <div class="input-group">
         <label class="request-label col-sm-6" for="phoneNumber">Phone Number: </label>
-        <output class="output-label" type="text" class="form-control col-lg-9" id="phoneNumber">Maksym Zabutnyy</output>
+        <output class="output-label" type="text" class="form-control col-lg-9" id="phoneNumber"><?php echo $request->contactNum; ?></output>
     </div>
     <div class="input-group">
         <label class="request-label col-sm-6" for="department">Department: </label>
-        <output class="output-label" type="text" class="form-control col-lg-9" id="department">Maksym Zabutnyy</output>
+        <output class="output-label" type="text" class="form-control col-lg-9" id="department"><?php echo $request->department; ?></output>
     </div>
-    </br>
     <br>
+
     <div class="input-group">
         <label class="request-label col-sm-6" for="appName">Application Name: </label>
-        <output class="output-label" type="text" class="form-control col-lg-8" id="appName">Maksym Zabutnyy</output>
+        <output class="output-label" type="text" class="form-control col-lg-8" id="appName"><?php echo $request->appName; ?></output>
     </div>
     <div class="input-group">
         <label class="request-label col-sm-6" for="permType">Permission Type: </label>
-        <output class="output-label" type="text" class="form-control col-lg-8" id="permType">Maksym Zabutnyy</output>
+        <output class="output-label" type="text" class="form-control col-lg-8" id="permType"><?php echo $request->permissionType; ?></output>
     </div>
     <div class="input-group">
         <label class="request-label col-sm-6" for="approver">Approver Name: </label>
-        <output class="output-label" type="text" class="form-control col-lg-8" id="approver">Maksym Zabutnyy</output>
+        <output class="output-label" type="text" class="form-control col-lg-8" id="approver"><?php echo $request->approver; ?></output>
     </div>
     <div class="input-group">
         <label class="request-label col-sm-6" for="reason">Reason: </label>
-        <textarea-output id="reason" type="text" class="form-control col-lg-8" style="height:100px">My reason is...</textarea-output>
+        <textarea-output id="reason" type="text" class="form-control col-lg-8" style="height:100px"><?php echo $request->reason; ?></textarea-output>
     </div>
-    <div class="postition-absolute">
+    <div class="input-group">
+        <label class="request-label col-sm-6" for="status">Status: </label>
+        <output class="output-label" type="text" class="form-control col-lg-8" id="status"><?php echo $status; ?></output>
+    </div>
+    <div class="position-absolute">
     <div class="container-footer">
-        <button class="btn btn-dark float-left" type="submit" value="request-back"><a href="#"><i class="fa fa-frown-o" aria-hidden="true"></i> Back</a></button>
-        <button class="btn btn-dark float-right" type="submit" value="request-approve"><a href="#"><i class="fa fa-smile-o" aria-hidden="true"></i> Approve</a></button>
+        <?php echo $buttons; ?>
     </div>
 </div>
 </body>
