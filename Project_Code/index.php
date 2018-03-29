@@ -53,7 +53,7 @@ $user = unserialize($_SESSION['user']);
                 <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
                     <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
                         <!--login--->
-                        <form method="post" action="Controllers/login.php" class="form-horizontal">
+                        <form method="post" action="Controllers/login.php" class="form-horizontal" id="loginDiv" onsubmit="return ValidateLogin()">
                             <div class="logo">
                                 <h1><i class="fa fa-reddit-alien" aria-hidden="true"></i></h1>
                             </div>
@@ -73,7 +73,7 @@ $user = unserialize($_SESSION['user']);
                     </div>
                     <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
                         <div class="container">
-                            <form class="form-horizontal" role="form" method="POST" action="Controllers/signUp.php">
+                            <form class="form-horizontal" role="form" method="POST" action="Controllers/signUp.php" id="signupDiv" onsubmit="return ValidateSignUp()">
                                 <div class="row">
                                     <div class="col-md-3"></div>
                                     <div class="col-md-6">
