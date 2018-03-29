@@ -7,7 +7,6 @@
  */
 ?>
 
-<template id="navbar">
   <nav class="navbar navbar-expand-sm navbar-light bg-dark navbar-dark">
     <a class="navbar-brand"href="#">HELL <i class="fa fa-rebel" aria-hidden="true"></i></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -25,7 +24,7 @@
 
         </ul>
         <div class="nav navbar-nav navbar-right">
-                   <a class="nav-link" href="index.php" ><button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Logout<span class="sr-only">(current)</span></button></a>
+                   <a class="nav-link" href="../Controllers/logout.php" ><button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Logout<span class="sr-only">(current)</span></button></a>
                 </div>
     </div>
 

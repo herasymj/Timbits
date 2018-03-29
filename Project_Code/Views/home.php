@@ -1,8 +1,15 @@
 <?php
 session_start();
+if(!isset($_SESSION['user'])){
+    header("location: ../index.php");
+}
 include('../Models/user.php');
 $user = unserialize($_SESSION['user']);
+echo $user->id;
 echo $user->firstName . " " . $user->lastName;
+echo $user->email;
+echo $user->isApprover;
+echo $user->isAnalyst;
 ?>
 <!doctype html>
 <html lang="en" xmlns="http://www.w3.org/1999/html">
@@ -108,27 +115,7 @@ echo $user->firstName . " " . $user->lastName;
     }
 </style>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-dark navbar-dark">
-    <a class="navbar-brand"href="#">HELL <i class="fa fa-rebel" aria-hidden="true"></i></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="home.php">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="request.php">New Request <span class="sr-only">(current)</span></a>
-            </li>
-
-        </ul>
-        <li class="nav-item active">
-            <a class="nav-link" href="index.php"><button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Logout<span class="sr-only">(current)</span></button></a>
-        </li>
-    </div>
-</nav>
+<?php include_once('navbar.php'); ?>
 
 
 <header class="container-header">

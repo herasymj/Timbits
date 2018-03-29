@@ -2,6 +2,6 @@
    session_start();
    
    if(session_destroy()) {
-      header("Location: ../Views/index.php");
+      header("location: ../index.php");
    }
 ?>

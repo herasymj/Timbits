@@ -9,7 +9,6 @@ include('../Models/session.php');
 if(!isset($request)) {
     header("Location: home.php");
 }
-include_once('navbar.php');
 function checkApp($appName){
 }
 ?>
@@ -48,8 +47,10 @@ function checkApp($appName){
     }
 </style>
 
+<?php include_once('navbar.php'); ?>
+
 <header class="container-header">
-    <h1>REQUEST #:<?php echo $request->requestID ?></h1>
+    <h1>REQUEST #:</h1>
 </header>
 <div class="container-content">
     <div class="input-group">

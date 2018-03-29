@@ -6,7 +6,6 @@
  * Time: 11:09 PM
  */
 include('../Models/session.php');
-include_once('navbar.php');
 function checkApp($appName){
 }
 ?>
@@ -38,6 +37,8 @@ function checkApp($appName){
       width: 100px;
     }
 </style>
+
+<?php include_once('navbar.php'); ?>
 
 <script>
     function checkAppName(){
