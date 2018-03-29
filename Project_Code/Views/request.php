@@ -1,16 +1,11 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: jenni
- * Date: 2018-03-27
- * Time: 11:09 PM
- */
-
-include('../Models/session.php');
-include_once('navbar.php');
-function checkApp($appName){
-
+session_start();
+if(!isset($_SESSION['user'])){
+    header("location: ../index.php");
 }
+include('../Models/user.php');
+$user = unserialize($_SESSION['user']);
+
 ?>
 
 <!doctype html>
@@ -23,70 +18,26 @@ function checkApp($appName){
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCk></script>
+    <link rel="stylesheet" href="styles.css"  type="text/css"/>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCk"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+     <link rel="stylesheet" href="style.css" type="text/css" />
     <title>Login</title>
 </head>
 <body>
 <style>
-    html{
-        width: 100%;
-        height: 100%;
-        background-color: #222;
-        border-color: #080808;
-    }
-
-    input[type=text],
-    input[type=password]{
-        background: 0 0;
-        border: 0;
-        box-shadow: none;
-        border-bottom: 1px solid #afb5c1;
-        border-radius: 0;
-
-
-    }
-
-    .request-label{
-        color: black;
-        padding: 10px 0 5px 5px;
-        align-items: normal;
-        font-size: 20px;
-
-        /*change color*/
-    }
-    .input-group{
-        background: 0 0;
-        border: 0;
-        color: #afb5c1;
-        padding: 0 0 5px 0;
-    }
-    .centered-box{
-        margin-left:auto;
-        margin-right:auto;
-    }
-    .label-group{
-        background: 0 0;
-        border: 0;
-        color: #afb5c1;
-        padding: 0 0 5px 0;
-    }
-    .container-footer{
-        background-color: green;
-    }
     .btn-dark{
-        border: 0;
-        border-radius: 30px;
-    }
-    input[type=text],
-    input[type=password]:focus{
-        box-shadow:none;
+      margin-top: 30px;
+      border: 0;
+      border-radius: 30px;
+      padding: 0 10 0 10;
+      width: 100px;
     }
 </style>
 
+<?php include_once('navbar.php'); ?>
 
-<!--  end navbar -->
 <script>
     function checkAppName(){
         var appName = document.getElementById('appName');
@@ -141,8 +92,9 @@ function checkApp($appName){
 
         <div class="input-group">
             <div class="container">
-                <a class="" href="#"><button class="btn btn-dark float-left" type="submit" value="request-back"><h3>Back</h3></button></a>
-                <button class="btn btn-dark float-right" type="submit" value="request-submit"><h3>Submit</h3></button>
+                <a class="" href="#"><button class="btn btn-dark float-left" type="submit" value="request-back"><i class="fa fa-hand-o-left" aria-hidden="true"></i> Back</button></a>
+                <button class="btn btn-dark  float-right" type="submit" value="request-submit"><i class="fa fa-paper-plane" aria-hidden="true"></i>  Submit</button>
+
             </div>
         </div>
     </form>
