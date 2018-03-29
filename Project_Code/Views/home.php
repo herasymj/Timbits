@@ -5,11 +5,7 @@ if(!isset($_SESSION['user'])){
 }
 include('../Models/user.php');
 $user = unserialize($_SESSION['user']);
-echo $user->id;
-echo $user->firstName . " " . $user->lastName;
-echo $user->email;
-echo $user->isApprover;
-echo $user->isAnalyst;
+
 ?>
 <!doctype html>
 <html lang="en" xmlns="http://www.w3.org/1999/html">

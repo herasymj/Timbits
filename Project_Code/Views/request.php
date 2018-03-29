@@ -1,13 +1,11 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: jenni
- * Date: 2018-03-27
- * Time: 11:09 PM
- */
-include('../Models/session.php');
-function checkApp($appName){
+session_start();
+if(!isset($_SESSION['user'])){
+    header("location: ../index.php");
 }
+include('../Models/user.php');
+$user = unserialize($_SESSION['user']);
+
 ?>
 
 <!doctype html>

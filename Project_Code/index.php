@@ -1,4 +1,11 @@
 <?php
+session_start();
+if(!isset($_SESSION['user'])){
+    header("location: ../index.php");
+}
+include('../Models/user.php');
+$user = unserialize($_SESSION['user']);
+
 ?>
 <!doctype html>
 <html lang="en">

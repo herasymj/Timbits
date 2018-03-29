@@ -8,7 +8,7 @@
 ?>
 
   <nav class="navbar navbar-expand-sm navbar-light bg-dark navbar-dark">
-    <a class="navbar-brand"href="#">HELL <i class="fa fa-rebel" aria-hidden="true"></i></a>
+    <a class="navbar-brand"href="home.php">HELL <i class="fa fa-rebel" aria-hidden="true"></i></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
